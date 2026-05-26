@@ -7,7 +7,7 @@ import com.pluralsight.models.toppings.Topping;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Sandwich implements IPriceable{
+public class Sandwich implements IPriceable{
     private BreadType breadType;
     private SandwichSize sandwhichSize;
     private boolean isToasted;
@@ -41,10 +41,25 @@ public abstract class Sandwich implements IPriceable{
     }
 
     public void addTopping(Topping topping) {
+        boolean alreadyExists = toppings.stream()
+                        .anyMatch(t -> t.getName().equals(topping.getName()));
+        if (alreadyExists) {
+             topping.setExtra(true);
+        }
         toppings.add(topping);
     }
 
     public double getPrice() {
-        return 0;
+        double breadPrice = 0;
+        switch(sandwhichSize){
+            case FOUR -> breadPrice = 5.50;
+            case EIGHT -> breadPrice = 7.00;
+            case TWELVE -> breadPrice = 8.50;
+        }
+        double toppingPrice = toppings.stream()
+                .mapToDouble(t -> t.getPrice(sandwhichSize))
+                .sum();
+
+        return breadPrice + toppingPrice;
     }
 }
