@@ -1,13 +1,15 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.enums.BreadType;
 import com.pluralsight.models.Order;
+import com.pluralsight.models.Sandwich;
 
-import java.util.List;
 import java.util.Scanner;
+
 
 public class UserInterface {
     private Scanner scanner;
-    private List<Order> order;
+    private Order order;
 
     public UserInterface(){
         this.scanner = new Scanner(System.in);
@@ -23,7 +25,10 @@ public class UserInterface {
             int choice = readInt("Enter your choice: ");
 
             switch (choice) {
-                case 1 -> displayOrderScreen();
+                case 1 -> {
+                    this.order = new Order();
+                    displayOrderScreen();
+                }
                 case 0 -> {
                     System.out.println("GoodBye!");
                     running = false;
@@ -59,7 +64,40 @@ public class UserInterface {
         }
     }
 
+    public Sandwich processAddSandwich() {}
 
+    public BreadType selectBreadType() {
+        while (true) {
+            System.out.println("\n=== Bread Type ===");
+            System.out.println("1. White (recommended)");
+            System.out.println("2. Wheat");
+            System.out.println("3. Rye");
+            System.out.println("4. Wrap");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Please select your bread type: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return BreadType.WHITE;
+                }
+                case 2 -> {
+                    return BreadType.WHEAT;
+                }
+                case 3 -> {
+                    return BreadType.RYE;
+                }
+                case 4 -> {
+                    return BreadType.WRAP;
+                }
+                case 0 -> {
+                    System.out.println("Going back to Sandwich Maker");
+                    return null;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
 
 
     /*---------------------------------------------------------------
@@ -88,5 +126,9 @@ public class UserInterface {
                 System.out.println("Invalid input, please enter a number");
             }
         }
+    }
+
+    private void displayOrder() {
+
     }
 }
