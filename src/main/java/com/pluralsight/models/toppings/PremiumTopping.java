@@ -3,10 +3,11 @@ package com.pluralsight.models.toppings;
 import com.pluralsight.enums.SandwichSize;
 
 public abstract class PremiumTopping extends Topping{
-    private boolean isExtra;
+    protected boolean isExtra;
 
     public PremiumTopping(String name) {
         super(name);
+        this.isExtra = false;
     }
 
     @Override
