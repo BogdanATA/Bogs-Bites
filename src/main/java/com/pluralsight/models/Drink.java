@@ -20,6 +20,7 @@ public class Drink implements IPriceable{
         return drinkSize;
     }
 
+    @Override
     public double getPrice() {
         double drinkCost = 0;
         switch (drinkSize) {

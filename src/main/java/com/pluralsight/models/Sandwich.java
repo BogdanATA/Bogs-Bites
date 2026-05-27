@@ -52,6 +52,7 @@ public class Sandwich implements IPriceable{
         toppings.add(topping);
     }
 
+    @Override
     public double getPrice() {
         double breadPrice = 0;
         switch(sandwhichSize){

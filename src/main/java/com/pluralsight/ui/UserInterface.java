@@ -1,6 +1,7 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.enums.*;
+import com.pluralsight.models.Chips;
 import com.pluralsight.models.Drink;
 import com.pluralsight.models.Order;
 import com.pluralsight.models.Sandwich;
@@ -62,7 +63,12 @@ public class UserInterface {
                     Drink drink = processAddDrink();
                     order.addItem(drink);
                 }
-                case 3 -> System.out.println("Add Chips");
+                case 3 -> {
+                    Chips chips = processAddChips();
+                    if (chips != null) {
+                        order.addItem(chips);
+                    }
+                }
                 case 4 -> System.out.println("Checkout");
                 case 0 -> {
                     System.out.println("Order Cancelled");
@@ -433,6 +439,43 @@ public class UserInterface {
                 }
                 case 3 -> {
                     return DrinkSize.LARGE;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
+
+    /*---------------------------------------------------------------
+     *                       CHIPS
+     * --------------------------------------------------------------*/
+    private Chips processAddChips() {
+        ChipType chipsType = selectChips();
+        Chips chips = new Chips(chipsType);
+        return chips;
+    }
+
+    private ChipType selectChips() {
+        while (true) {
+            System.out.println("\n=== Chips Selection ===");
+            System.out.println("1. Lays Plain");
+            System.out.println("2. Sun Cheddar");
+            System.out.println("3. Sun Salsa");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Select your Chips: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return ChipType.LAYS_PLAIN;
+                }
+                case 2 -> {
+                    return ChipType.SUN_CHEDDAR;
+                }
+                case 3 -> {
+                    return ChipType.SUN_SALSA;
+                }
+                case 0 -> {
+                    return null;
                 }
                 default -> System.out.println("Invalid Choice");
             }

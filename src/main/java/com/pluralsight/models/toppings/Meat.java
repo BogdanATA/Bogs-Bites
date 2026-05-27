@@ -9,6 +9,7 @@ public class Meat extends PremiumTopping{
         super(name.toString());
     }
 
+    @Override
     public double getPrice(SandwichSize sandwichSize) {
         double meatCost = 0;
         if (isExtra) {
