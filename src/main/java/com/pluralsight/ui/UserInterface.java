@@ -40,8 +40,6 @@ public class UserInterface {
     }
 
     public void displayOrderScreen() {
-
-
         boolean running = true;
         while (running) {
             System.out.println(order);
@@ -77,22 +75,46 @@ public class UserInterface {
         SandwichSize sandwichSize = selectSandwichSize();
 
         Sandwich sandwich = new Sandwich(breadType, sandwichSize);
-
-        MeatType meatType = selectMeat();
-        sandwich.addTopping(new Meat(meatType));
-
-        CheeseType cheeseType = selectCheese();
-        sandwich.addTopping(new Cheese(cheeseType));
-
-        RegularToppingType toppingType = selectRegularToppings();
-        sandwich.addTopping(new RegularTopping(toppingType));
-
-        SauceType sauceType = selectSauce();
-        sandwich.addTopping(new Sauce(sauceType));
-
-        SideType sideType = selectSide();
-        sandwich.addTopping(new Side(sideType));
-
+        //Meat
+        int meatCount = 0;
+        while (meatCount < 3) {
+            MeatType meatType = selectMeat();
+            if (meatType == null) break;
+            sandwich.addTopping(new Meat(meatType));
+            meatCount++;
+        }
+        //Cheese
+        int cheeseCount= 0;
+        while (cheeseCount < 3) {
+            CheeseType cheeseType = selectCheese();
+            if (cheeseType == null) break;
+            sandwich.addTopping(new Cheese(cheeseType));
+            cheeseCount++;
+        }
+        //Toppings
+        int toppingCount = 0;
+        while (toppingCount < 6) {
+            RegularToppingType toppingType = selectRegularToppings();
+            if (toppingType == null) break;
+            sandwich.addTopping(new RegularTopping(toppingType));
+            toppingCount++;
+        }
+        //Sauce
+        int sauceCount = 0;
+        while (sauceCount < 3) {
+            SauceType sauceType = selectSauce();
+            if (sauceType == null) break;
+            sandwich.addTopping(new Sauce(sauceType));
+            sauceCount++;
+        }
+        //Side
+        int sideCount = 0;
+        while (sideCount < 2) {
+            SideType sideType = selectSide();
+            if (sideType == null) break;
+            sandwich.addTopping(new Side(sideType));
+            sideCount++;
+        }
         toastSandwich(sandwich);
 
         return sandwich;
@@ -159,6 +181,7 @@ public class UserInterface {
             System.out.println("4. Roast Beef");
             System.out.println("5. Chicken");
             System.out.println("6. Bacon");
+            System.out.println("0. Done");
 
             int choice = readInt("Select your meat: ");
 
@@ -181,6 +204,9 @@ public class UserInterface {
                 case 6 -> {
                     return MeatType.BACON;
                 }
+                case 0 -> {
+                    return null;
+                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -193,6 +219,7 @@ public class UserInterface {
             System.out.println("2. Provolone");
             System.out.println("3. Cheddar");
             System.out.println("4. Swiss");
+            System.out.println("0. Done");
 
             int choice = readInt("Select your Cheese: ");
 
@@ -208,6 +235,9 @@ public class UserInterface {
                 }
                 case 4 -> {
                     return CheeseType.SWISS;
+                }
+                case 0 -> {
+                    return null;
                 }
                 default -> System.out.println("Invalid Choice");
             }
@@ -226,6 +256,7 @@ public class UserInterface {
             System.out.println("7. Pickles");
             System.out.println("8. Guacamole");
             System.out.println("9. Mushrooms");
+            System.out.println("0. Done");
 
             int choice = readInt("Select your toppings: ");
 
@@ -257,6 +288,9 @@ public class UserInterface {
                 case 9 -> {
                     return RegularToppingType.MUSHROOMS;
                 }
+                case 0 -> {
+                    return null;
+                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -271,6 +305,7 @@ public class UserInterface {
             System.out.println("4. Ranch");
             System.out.println("5. Thousand Islands");
             System.out.println("6. Vinaigrette");
+            System.out.println("0. Done");
 
             int choice = readInt("Select your sauce: ");
 
@@ -293,6 +328,9 @@ public class UserInterface {
                 case 6 -> {
                     return SauceType.VINAIGRETTE;
                 }
+                case 0 -> {
+                    return null;
+                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -303,6 +341,7 @@ public class UserInterface {
             System.out.println("\n=== Side Selection ===");
             System.out.println("1. Au Jus");
             System.out.println("2. Sauce");
+            System.out.println("0. Done");
 
             int choice = readInt("Select your side: ");
 
@@ -312,6 +351,9 @@ public class UserInterface {
                 }
                 case 2 -> {
                     return SideType.SAUCE;
+                }
+                case 0 -> {
+                    return null;
                 }
                 default -> System.out.println("Invalid Choice");
             }
