@@ -1,11 +1,8 @@
 package com.pluralsight.ui;
 
-import com.pluralsight.enums.BreadType;
-import com.pluralsight.enums.MeatType;
-import com.pluralsight.enums.SandwichSize;
+import com.pluralsight.enums.*;
 import com.pluralsight.models.Order;
 import com.pluralsight.models.Sandwich;
-import com.pluralsight.models.toppings.Meat;
 
 import java.util.Scanner;
 
@@ -67,36 +64,6 @@ public class UserInterface {
         }
     }
 
-    public Sandwich processAddSandwich() {}
-
-    public SandwichSize selectSandwichSize() {
-        while (true) {
-            System.out.println("\n=== Bread Type ===");
-            System.out.println("1. 4 Inch");
-            System.out.println("2. 8 Inch");
-            System.out.println("3. 12 Inch");
-            System.out.println("0. Go Back");
-
-            int choice = readInt("Please select your bread type: ");
-
-            switch (choice) {
-                case 1 -> {
-                    return SandwichSize.FOUR;
-                }
-                case 2 -> {
-                    return SandwichSize.EIGHT;
-                }
-                case 3 -> {
-                    return SandwichSize.TWELVE;
-                }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
-            }
-        }
-    }
 
     public BreadType selectBreadType() {
         while (true) {
@@ -121,6 +88,35 @@ public class UserInterface {
                 }
                 case 4 -> {
                     return BreadType.WRAP;
+                }
+                case 0 -> {
+                    System.out.println("Going back to Sandwich Maker");
+                    return null;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
+
+    public SandwichSize selectSandwichSize() {
+        while (true) {
+            System.out.println("\n=== Bread Type ===");
+            System.out.println("1. 4 Inch");
+            System.out.println("2. 8 Inch");
+            System.out.println("3. 12 Inch");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Please select your sandwich size: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return SandwichSize.FOUR;
+                }
+                case 2 -> {
+                    return SandwichSize.EIGHT;
+                }
+                case 3 -> {
+                    return SandwichSize.TWELVE;
                 }
                 case 0 -> {
                     System.out.println("Going back to Sandwich Maker");
@@ -169,6 +165,170 @@ public class UserInterface {
                 }
                 default -> System.out.println("Invalid Choice");
             }
+        }
+    }
+
+    public CheeseType selectCheese() {
+        while (true) {
+            System.out.println("\n=== Cheese Selection ===");
+            System.out.println("1. American");
+            System.out.println("2. Provolone");
+            System.out.println("3. Cheddar");
+            System.out.println("4. Swiss");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Select your Cheese: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return CheeseType.AMERICAN;
+                }
+                case 2 -> {
+                    return CheeseType.PROVOLONE;
+                }
+                case 3 -> {
+                    return CheeseType.CHEDDAR;
+                }
+                case 4 -> {
+                    return CheeseType.SWISS;
+                }
+                case 0 -> {
+                    System.out.println("Going back to Sandwich Maker");
+                    return null;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
+
+    public RegularToppingType selectRegularToppings() {
+        while (true) {
+            System.out.println("\n=== Topping Selection ===");
+            System.out.println("1. Lettuce");
+            System.out.println("2. Peppers");
+            System.out.println("3. Onions");
+            System.out.println("4. Tomatoes");
+            System.out.println("5. Jalapenos");
+            System.out.println("6. Cucumbers");
+            System.out.println("7. Pickles");
+            System.out.println("8. Guacamole");
+            System.out.println("9. Mushrooms");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Select your toppings: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return RegularToppingType.LETTUCE;
+                }
+                case 2 -> {
+                    return RegularToppingType.PEPPERS;
+                }
+                case 3 -> {
+                    return RegularToppingType.ONIONS;
+                }
+                case 4 -> {
+                    return RegularToppingType.TOMATOES;
+                }
+                case 5 -> {
+                    return RegularToppingType.JALAPENOS;
+                }
+                case 6 -> {
+                    return RegularToppingType.CUCUMBERS;
+                }
+                case 7 -> {
+                    return RegularToppingType.PICKLES;
+                }
+                case 8 -> {
+                    return RegularToppingType.GUACAMOLE;
+                }
+                case 9 -> {
+                    return RegularToppingType.MUSHROOMS;
+                }
+                case 0 -> {
+                    System.out.println("Going back to Sandwich Maker");
+                    return null;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
+
+    public SauceType selectSauce() {
+        while (true) {
+            System.out.println("\n=== Sauce Selection ===");
+            System.out.println("1. Mayo");
+            System.out.println("2. Mustard");
+            System.out.println("3. Ketchup");
+            System.out.println("4. Ranch");
+            System.out.println("5. Thousand Islands");
+            System.out.println("6. Vinaigrette");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Select your sauce: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return SauceType.MAYO;
+                }
+                case 2 -> {
+                    return SauceType.MUSTARD;
+                }
+                case 3 -> {
+                    return SauceType.KETCHUP;
+                }
+                case 4 -> {
+                    return SauceType.RANCH;
+                }
+                case 5 -> {
+                    return SauceType.THOUSAND_ISLANDS;
+                }
+                case 6 -> {
+                    return SauceType.VINAIGRETTE;
+                }
+                case 0 -> {
+                    System.out.println("Going back to Sandwich Maker");
+                    return null;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
+
+    public SideType selectSide() {
+        while (true) {
+            System.out.println("\n=== Side Selection ===");
+            System.out.println("1. Au Jus");
+            System.out.println("2. Sauce");
+            System.out.println("0. Go Back");
+
+            int choice = readInt("Select your side: ");
+
+            switch (choice) {
+                case 1 -> {
+                    return SideType.AU_JUS;
+                }
+                case 2 -> {
+                    return SideType.SAUCE;
+                }
+                case 0 -> {
+                    System.out.println("Going back to Sandwich Maker");
+                    return null;
+                }
+                default -> System.out.println("Invalid Choice");
+            }
+        }
+    }
+
+    public void toastSandwich(Sandwich sandwich) {
+        System.out.println("\n=== Toast Sandwich ===");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+
+        int choice = readInt("Would you like the bread toasted?: ");
+
+        if (choice == 1) {
+            sandwich.setToasted(true);
         }
     }
 
