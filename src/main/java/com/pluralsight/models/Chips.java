@@ -20,8 +20,6 @@ public class Chips implements IPriceable{
 
     @Override
     public String toString() {
-        return "Chips{" +
-                "name=" + name +
-                '}';
+        return name + " Chips - $" + String.format("%.2f", getPrice());
     }
 }

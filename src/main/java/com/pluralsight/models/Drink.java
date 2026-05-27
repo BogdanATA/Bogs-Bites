@@ -33,9 +33,6 @@ public class Drink implements IPriceable{
 
     @Override
     public String toString() {
-        return "\nDrink{" +
-                "flavor=" + flavor +
-                ", drinkSize=" + drinkSize +
-                '}';
+        return flavor + " (" + drinkSize + ") - $" + String.format("%.2f", getPrice());
     }
 }

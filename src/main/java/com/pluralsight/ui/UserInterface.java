@@ -69,7 +69,7 @@ public class UserInterface {
                         order.addItem(chips);
                     }
                 }
-                case 4 -> System.out.println("Checkout");
+                case 4 -> displayCheckoutScreen();
                 case 0 -> {
                     System.out.println("Order Cancelled");
                     running = false;
@@ -479,6 +479,32 @@ public class UserInterface {
                 }
                 default -> System.out.println("Invalid Choice");
             }
+        }
+    }
+
+    private void displayCheckoutScreen() {
+        System.out.println("\n=== Checkout ===");
+        System.out.println("Order Summary:");
+        System.out.println("----------------------------");
+
+        order.getItems().stream()
+                .forEach(item -> System.out.println(item));
+
+        System.out.println("----------------------------");
+        System.out.printf("Total: $%.2f%n", order.getTotalPrice());
+        System.out.println("----------------------------");
+
+        System.out.println("\n1. Confirm Order");
+        System.out.println("0. Cancel Order");
+
+        int choice = readInt("Enter your choice: ");
+
+        switch (choice) {
+            case 1 -> {
+                System.out.println("Order confirmed! Receipt saved.");
+            }
+            case 0 -> System.out.println("Order cancelled.");
+            default -> System.out.println("Invalid choice.");
         }
     }
 

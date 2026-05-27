@@ -69,11 +69,19 @@ public class Sandwich implements IPriceable{
 
     @Override
     public String toString() {
-        return "\nSandwich{" +
-                "breadType=" + breadType +
-                ", sandwhichSize=" + sandwhichSize +
-                ", isToasted=" + isToasted +
-                ", toppings=" + toppings +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(sandwhichSize.getInches()).append("\" ").append(breadType).append(" Sandwich");
+        if (isToasted) sb.append(" [Toasted]");
+        sb.append("\n  Toppings:");
+        for (Topping t : toppings) {
+            sb.append("\n    - ").append(t.getName());
+            if (t instanceof PremiumTopping premiumTopping && premiumTopping.isExtra()) {
+                sb.append(" (extra)");
+            }
+            double price = t.getPrice(sandwhichSize);
+            if (price > 0) sb.append(" - $").append(String.format("%.2f", price));
+        }
+        sb.append("\n  Price: $").append(String.format("%.2f", getPrice()));
+        return sb.toString();
     }
 }
