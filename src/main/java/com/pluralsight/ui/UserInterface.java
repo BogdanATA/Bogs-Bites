@@ -12,6 +12,10 @@ import java.util.Scanner;
 
 
 public class UserInterface {
+    private static final String CYAN = "\u001B[36m";
+    private static final String YELLOW = "\u001B[33m";
+    private static final String RESET = "\u001B[0m";
+
     private Scanner scanner;
     private Order order;
 
@@ -22,7 +26,7 @@ public class UserInterface {
     public void displayHomeScreen() {
         boolean running = true;
         while (running) {
-            System.out.println("\n=== Welcome to Bog's Bites ===");
+            System.out.println("\n" + CYAN + "=== Welcome to Bog's Bites ===" + RESET);
             System.out.println("1. New Order");
             System.out.println("0. Exit");
 
@@ -37,7 +41,7 @@ public class UserInterface {
                     System.out.println("GoodBye!");
                     running = false;
                 }
-                default -> System.out.println("Invalid choice.");
+                default -> System.out.println(YELLOW + "Invalid choice." + RESET);
             }
         }
     }
@@ -45,9 +49,9 @@ public class UserInterface {
     private void displayOrderScreen() {
         boolean running = true;
         while (running) {
-            System.out.println("\n=== Your Current Order ===");
+            System.out.println("\n" + CYAN + "=== Your Current Order ===" + RESET);
             System.out.println(order);
-            System.out.println("\n=== Order ===");
+            System.out.println("\n" + CYAN + "=== Order ===" + RESET);
             System.out.println("1. Add Sandwich");
             System.out.println("2. Add Drink");
             System.out.println("3. Add Chips");
@@ -75,7 +79,7 @@ public class UserInterface {
                 }
                 case 4 -> {
                     if (order.getItems().isEmpty()){
-                        System.out.println("\nYou must add atleast one item before checking out");
+                        System.out.println(YELLOW + "\nYou must add atleast one item before checking out" + RESET);
                     } else {
                         running = displayCheckoutScreen();
                     }
@@ -84,7 +88,7 @@ public class UserInterface {
                     System.out.println("Order Cancelled");
                     running = false;
                 }
-                default -> System.out.println("Invalid Input");
+                default -> System.out.println(YELLOW + "Invalid Input" + RESET);
             }
         }
     }
@@ -106,7 +110,7 @@ public class UserInterface {
             sandwich.addTopping(new Meat(meatType));
             meatCount++;
             if (meatCount == 3) {
-                System.out.println("Max of 3 Meats reached!");
+                System.out.println(YELLOW + "Max of 3 Meats reached!" + RESET);
             }
         }
         //Cheese
@@ -117,7 +121,7 @@ public class UserInterface {
             sandwich.addTopping(new Cheese(cheeseType));
             cheeseCount++;
             if (cheeseCount == 3) {
-                System.out.println("Max of 3 Cheeses reached!");
+                System.out.println(YELLOW + "Max of 3 Cheeses reached!" + RESET);
             }
         }
         //Toppings
@@ -128,7 +132,7 @@ public class UserInterface {
             sandwich.addTopping(new RegularTopping(toppingType));
             toppingCount++;
             if (toppingCount == 6) {
-                System.out.println("Max of 6 Toppings reached!");
+                System.out.println(YELLOW + "Max of 6 Toppings reached!" + RESET);
             }
         }
         //Sauce
@@ -139,7 +143,7 @@ public class UserInterface {
             sandwich.addTopping(new Sauce(sauceType));
             sauceCount++;
             if (sauceCount == 3) {
-                System.out.println("Max of 3 Sauces reached!");
+                System.out.println(YELLOW + "Max of 3 Sauces reached!" + RESET);
             }
         }
         //Side
@@ -150,7 +154,7 @@ public class UserInterface {
             sandwich.addTopping(new Side(sideType));
             sideCount++;
             if(sideCount == 2) {
-                System.out.println("Max of 2 Sides reached!");
+                System.out.println(YELLOW + "Max of 2 Sides reached!" + RESET);
             }
         }
         toastSandwich(sandwich);
@@ -160,7 +164,7 @@ public class UserInterface {
 
     private BreadType selectBreadType() {
         while (true) {
-            System.out.println("\n=== Bread Type ===");
+            System.out.println("\n" + CYAN + "=== Bread Type ===" + RESET);
             System.out.println("1. White (recommended)");
             System.out.println("2. Wheat");
             System.out.println("3. Rye");
@@ -169,26 +173,18 @@ public class UserInterface {
             int choice = readInt("Please select your bread type: ");
 
             switch (choice) {
-                case 1 -> {
-                    return BreadType.WHITE;
-                }
-                case 2 -> {
-                    return BreadType.WHEAT;
-                }
-                case 3 -> {
-                    return BreadType.RYE;
-                }
-                case 4 -> {
-                    return BreadType.WRAP;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return BreadType.WHITE; }
+                case 2 -> { return BreadType.WHEAT; }
+                case 3 -> { return BreadType.RYE; }
+                case 4 -> { return BreadType.WRAP; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private SandwichSize selectSandwichSize() {
         while (true) {
-            System.out.println("\n=== Bread Type ===");
+            System.out.println("\n" + CYAN + "=== Sandwich Size ===" + RESET);
             System.out.println("1. 4 Inch");
             System.out.println("2. 8 Inch");
             System.out.println("3. 12 Inch");
@@ -196,24 +192,18 @@ public class UserInterface {
             int choice = readInt("Please select your sandwich size: ");
 
             switch (choice) {
-                case 1 -> {
-                    return SandwichSize.FOUR;
-                }
-                case 2 -> {
-                    return SandwichSize.EIGHT;
-                }
-                case 3 -> {
-                    return SandwichSize.TWELVE;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return SandwichSize.FOUR; }
+                case 2 -> { return SandwichSize.EIGHT; }
+                case 3 -> { return SandwichSize.TWELVE; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private MeatType selectMeat() {
         while (true) {
-            System.out.println("\n=== Meat Selection ===");
-            System.out.println("Maximum of 3 Meats");
+            System.out.println("\n" + CYAN + "=== Meat Selection ===" + RESET);
+            System.out.println(YELLOW + "Maximum of 3 Meats" + RESET);
             System.out.println("1. Steak");
             System.out.println("2. Ham");
             System.out.println("3. Salami");
@@ -225,36 +215,22 @@ public class UserInterface {
             int choice = readInt("Select your meat: ");
 
             switch (choice) {
-                case 1 -> {
-                    return MeatType.STEAK;
-                }
-                case 2 -> {
-                    return MeatType.HAM;
-                }
-                case 3 -> {
-                    return MeatType.SALAMI;
-                }
-                case 4 -> {
-                    return MeatType.ROAST_BEEF;
-                }
-                case 5 -> {
-                    return MeatType.CHICKEN;
-                }
-                case 6 -> {
-                    return MeatType.BACON;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return MeatType.STEAK; }
+                case 2 -> { return MeatType.HAM; }
+                case 3 -> { return MeatType.SALAMI; }
+                case 4 -> { return MeatType.ROAST_BEEF; }
+                case 5 -> { return MeatType.CHICKEN; }
+                case 6 -> { return MeatType.BACON; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private CheeseType selectCheese() {
         while (true) {
-            System.out.println("\n=== Cheese Selection ===");
-            System.out.println("Maximum of 3 Cheeses");
+            System.out.println("\n" + CYAN + "=== Cheese Selection ===" + RESET);
+            System.out.println(YELLOW + "Maximum of 3 Cheeses" + RESET);
             System.out.println("1. American");
             System.out.println("2. Provolone");
             System.out.println("3. Cheddar");
@@ -264,30 +240,20 @@ public class UserInterface {
             int choice = readInt("Select your Cheese: ");
 
             switch (choice) {
-                case 1 -> {
-                    return CheeseType.AMERICAN;
-                }
-                case 2 -> {
-                    return CheeseType.PROVOLONE;
-                }
-                case 3 -> {
-                    return CheeseType.CHEDDAR;
-                }
-                case 4 -> {
-                    return CheeseType.SWISS;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return CheeseType.AMERICAN; }
+                case 2 -> { return CheeseType.PROVOLONE; }
+                case 3 -> { return CheeseType.CHEDDAR; }
+                case 4 -> { return CheeseType.SWISS; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private RegularToppingType selectRegularToppings() {
         while (true) {
-            System.out.println("\n=== Topping Selection ===");
-            System.out.println("Maximum of 6 Toppings");
+            System.out.println("\n" + CYAN + "=== Topping Selection ===" + RESET);
+            System.out.println(YELLOW + "Maximum of 6 Toppings" + RESET);
             System.out.println("1. Lettuce");
             System.out.println("2. Peppers");
             System.out.println("3. Onions");
@@ -302,45 +268,25 @@ public class UserInterface {
             int choice = readInt("Select your toppings: ");
 
             switch (choice) {
-                case 1 -> {
-                    return RegularToppingType.LETTUCE;
-                }
-                case 2 -> {
-                    return RegularToppingType.PEPPERS;
-                }
-                case 3 -> {
-                    return RegularToppingType.ONIONS;
-                }
-                case 4 -> {
-                    return RegularToppingType.TOMATOES;
-                }
-                case 5 -> {
-                    return RegularToppingType.JALAPENOS;
-                }
-                case 6 -> {
-                    return RegularToppingType.CUCUMBERS;
-                }
-                case 7 -> {
-                    return RegularToppingType.PICKLES;
-                }
-                case 8 -> {
-                    return RegularToppingType.GUACAMOLE;
-                }
-                case 9 -> {
-                    return RegularToppingType.MUSHROOMS;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return RegularToppingType.LETTUCE; }
+                case 2 -> { return RegularToppingType.PEPPERS; }
+                case 3 -> { return RegularToppingType.ONIONS; }
+                case 4 -> { return RegularToppingType.TOMATOES; }
+                case 5 -> { return RegularToppingType.JALAPENOS; }
+                case 6 -> { return RegularToppingType.CUCUMBERS; }
+                case 7 -> { return RegularToppingType.PICKLES; }
+                case 8 -> { return RegularToppingType.GUACAMOLE; }
+                case 9 -> { return RegularToppingType.MUSHROOMS; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private SauceType selectSauce() {
         while (true) {
-            System.out.println("\n=== Sauce Selection ===");
-            System.out.println("Maximum of 3 Sauces");
+            System.out.println("\n" + CYAN + "=== Sauce Selection ===" + RESET);
+            System.out.println(YELLOW + "Maximum of 3 Sauces" + RESET);
             System.out.println("1. Mayo");
             System.out.println("2. Mustard");
             System.out.println("3. Ketchup");
@@ -352,36 +298,22 @@ public class UserInterface {
             int choice = readInt("Select your sauce: ");
 
             switch (choice) {
-                case 1 -> {
-                    return SauceType.MAYO;
-                }
-                case 2 -> {
-                    return SauceType.MUSTARD;
-                }
-                case 3 -> {
-                    return SauceType.KETCHUP;
-                }
-                case 4 -> {
-                    return SauceType.RANCH;
-                }
-                case 5 -> {
-                    return SauceType.THOUSAND_ISLANDS;
-                }
-                case 6 -> {
-                    return SauceType.VINAIGRETTE;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return SauceType.MAYO; }
+                case 2 -> { return SauceType.MUSTARD; }
+                case 3 -> { return SauceType.KETCHUP; }
+                case 4 -> { return SauceType.RANCH; }
+                case 5 -> { return SauceType.THOUSAND_ISLANDS; }
+                case 6 -> { return SauceType.VINAIGRETTE; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private SideType selectSide() {
         while (true) {
-            System.out.println("\n=== Side Selection ===");
-            System.out.println("Maximum of 2 Sides");
+            System.out.println("\n" + CYAN + "=== Side Selection ===" + RESET);
+            System.out.println(YELLOW + "Maximum of 2 Sides" + RESET);
             System.out.println("1. Au Jus");
             System.out.println("2. Sauce");
             System.out.println("0. Done");
@@ -389,35 +321,26 @@ public class UserInterface {
             int choice = readInt("Select your side: ");
 
             switch (choice) {
-                case 1 -> {
-                    return SideType.AU_JUS;
-                }
-                case 2 -> {
-                    return SideType.SAUCE;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return SideType.AU_JUS; }
+                case 2 -> { return SideType.SAUCE; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private void toastSandwich(Sandwich sandwich) {
         while (true) {
-            System.out.println("\n=== Toast Sandwich ===");
+            System.out.println("\n" + CYAN + "=== Toast Sandwich ===" + RESET);
             System.out.println("1. Yes");
             System.out.println("2. No");
 
             int choice = readInt("Would you like the bread toasted?: ");
 
             switch (choice) {
-                case 1 -> {
-                    sandwich.setToasted(true);
-                    return;
-                }
-                case 2 -> {return;}
-                default -> System.out.println("Invalid Input");
+                case 1 -> { sandwich.setToasted(true); return; }
+                case 2 -> { return; }
+                default -> System.out.println(YELLOW + "Invalid Input" + RESET);
             }
         }
     }
@@ -431,15 +354,12 @@ public class UserInterface {
             return null;
         }
         DrinkSize drinkSize = selectDrinkSize();
-
-        Drink drink = new Drink(drinkFlavor, drinkSize);
-
-        return drink;
+        return new Drink(drinkFlavor, drinkSize);
     }
 
     private DrinkFlavor selectDrinkFlavor() {
         while (true) {
-            System.out.println("\n=== Drink Flavor Selection ===");
+            System.out.println("\n" + CYAN + "=== Drink Flavor Selection ===" + RESET);
             System.out.println("1. Coke");
             System.out.println("2. Diet Coke");
             System.out.println("3. Sprite");
@@ -448,26 +368,18 @@ public class UserInterface {
             int choice = readInt("Select your drink flavor: ");
 
             switch (choice) {
-                case 1 -> {
-                    return DrinkFlavor.COKE;
-                }
-                case 2 -> {
-                    return DrinkFlavor.DIET_COKE;
-                }
-                case 3 -> {
-                    return DrinkFlavor.SPRITE;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return DrinkFlavor.COKE; }
+                case 2 -> { return DrinkFlavor.DIET_COKE; }
+                case 3 -> { return DrinkFlavor.SPRITE; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private DrinkSize selectDrinkSize() {
         while (true) {
-            System.out.println("\n=== Drink Size Selection ===");
+            System.out.println("\n" + CYAN + "=== Drink Size Selection ===" + RESET);
             System.out.println("1. Small");
             System.out.println("2. Medium");
             System.out.println("3. Large");
@@ -475,16 +387,10 @@ public class UserInterface {
             int choice = readInt("Select your drink size: ");
 
             switch (choice) {
-                case 1 -> {
-                    return DrinkSize.SMALL;
-                }
-                case 2 -> {
-                    return DrinkSize.MEDIUM;
-                }
-                case 3 -> {
-                    return DrinkSize.LARGE;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return DrinkSize.SMALL; }
+                case 2 -> { return DrinkSize.MEDIUM; }
+                case 3 -> { return DrinkSize.LARGE; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
@@ -494,16 +400,13 @@ public class UserInterface {
      * --------------------------------------------------------------*/
     private Chips processAddChips() {
         ChipType chipsType = selectChips();
-        if (chipsType == null) {
-            return null;
-        }
-        Chips chips = new Chips(chipsType);
-        return chips;
+        if (chipsType == null) return null;
+        return new Chips(chipsType);
     }
 
     private ChipType selectChips() {
         while (true) {
-            System.out.println("\n=== Chips Selection ===");
+            System.out.println("\n" + CYAN + "=== Chips Selection ===" + RESET);
             System.out.println("1. Lays Plain");
             System.out.println("2. Sun Cheddar");
             System.out.println("3. Sun Salsa");
@@ -512,26 +415,18 @@ public class UserInterface {
             int choice = readInt("Select your Chips: ");
 
             switch (choice) {
-                case 1 -> {
-                    return ChipType.LAYS_PLAIN;
-                }
-                case 2 -> {
-                    return ChipType.SUN_CHEDDAR;
-                }
-                case 3 -> {
-                    return ChipType.SUN_SALSA;
-                }
-                case 0 -> {
-                    return null;
-                }
-                default -> System.out.println("Invalid Choice");
+                case 1 -> { return ChipType.LAYS_PLAIN; }
+                case 2 -> { return ChipType.SUN_CHEDDAR; }
+                case 3 -> { return ChipType.SUN_SALSA; }
+                case 0 -> { return null; }
+                default -> System.out.println(YELLOW + "Invalid Choice" + RESET);
             }
         }
     }
 
     private boolean displayCheckoutScreen() {
         while (true) {
-            System.out.println("\n=== Checkout ===");
+            System.out.println("\n" + CYAN + "=== Checkout ===" + RESET);
             System.out.println("Order Summary:");
             System.out.println("----------------------------");
 
@@ -557,7 +452,7 @@ public class UserInterface {
                     System.out.println("Order cancelled.");
                     return true;
                 }
-                default -> System.out.println("Invalid choice.");
+                default -> System.out.println(YELLOW + "Invalid choice." + RESET);
             }
         }
     }
@@ -576,22 +471,8 @@ public class UserInterface {
             try {
                 return Integer.parseInt(readString(prompt));
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input, please enter a whole number.");
+                System.out.println(YELLOW + "Invalid input, please enter a whole number." + RESET);
             }
         }
-    }
-
-    private double readDouble(String prompt) {
-        while (true) {
-            try {
-                return Double.parseDouble(readString(prompt));
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input, please enter a number");
-            }
-        }
-    }
-
-    private void displayOrder(Order order) {
-
     }
 }
