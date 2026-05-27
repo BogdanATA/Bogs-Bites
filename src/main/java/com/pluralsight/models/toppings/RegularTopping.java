@@ -1,11 +1,12 @@
 package com.pluralsight.models.toppings;
 
+import com.pluralsight.enums.RegularToppingType;
 import com.pluralsight.enums.SandwichSize;
 
 public class RegularTopping extends Topping{
 
-    public RegularTopping(String name) {
-        super(name);
+    public RegularTopping(RegularToppingType name) {
+        super(name.toString());
     }
 
     @Override

@@ -1,11 +1,12 @@
 package com.pluralsight.models.toppings;
 
+import com.pluralsight.enums.CheeseType;
 import com.pluralsight.enums.SandwichSize;
 
 public class Cheese extends PremiumTopping{
 
-    public Cheese(String name) {
-        super(name);
+    public Cheese(CheeseType name) {
+        super(name.toString());
     }
 
     public double getPrice(SandwichSize sandwichSize) {

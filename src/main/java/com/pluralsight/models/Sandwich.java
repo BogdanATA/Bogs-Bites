@@ -2,6 +2,7 @@ package com.pluralsight.models;
 
 import com.pluralsight.enums.BreadType;
 import com.pluralsight.enums.SandwichSize;
+import com.pluralsight.models.toppings.PremiumTopping;
 import com.pluralsight.models.toppings.Topping;
 
 import java.util.ArrayList;
@@ -41,12 +42,14 @@ public class Sandwich implements IPriceable{
     }
 
     public void addTopping(Topping topping) {
-        boolean alreadyExists = toppings.stream()
-                        .anyMatch(t -> t.getName().equals(topping.getName()));
-        if (alreadyExists) {
-             topping.setExtra(true);
+        if (topping instanceof PremiumTopping premiumTopping) {
+            boolean alreadyExists = toppings.stream()
+                    .anyMatch(t -> t.getName().equals(topping.getName()));
+            if (alreadyExists) {
+                premiumTopping.setExtra(true);
+            }
+            toppings.add(topping);
         }
-        toppings.add(topping);
     }
 
     public double getPrice() {

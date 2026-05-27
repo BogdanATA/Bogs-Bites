@@ -64,6 +64,9 @@ public class UserInterface {
         }
     }
 
+    public Sandwich processAddSandwich() {
+
+    }
 
     public BreadType selectBreadType() {
         while (true) {
@@ -72,7 +75,6 @@ public class UserInterface {
             System.out.println("2. Wheat");
             System.out.println("3. Rye");
             System.out.println("4. Wrap");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Please select your bread type: ");
 
@@ -89,10 +91,6 @@ public class UserInterface {
                 case 4 -> {
                     return BreadType.WRAP;
                 }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
-                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -104,7 +102,6 @@ public class UserInterface {
             System.out.println("1. 4 Inch");
             System.out.println("2. 8 Inch");
             System.out.println("3. 12 Inch");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Please select your sandwich size: ");
 
@@ -117,10 +114,6 @@ public class UserInterface {
                 }
                 case 3 -> {
                     return SandwichSize.TWELVE;
-                }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
                 }
                 default -> System.out.println("Invalid Choice");
             }
@@ -136,7 +129,6 @@ public class UserInterface {
             System.out.println("4. Roast Beef");
             System.out.println("5. Chicken");
             System.out.println("6. Bacon");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Select your meat: ");
 
@@ -159,10 +151,6 @@ public class UserInterface {
                 case 6 -> {
                     return MeatType.BACON;
                 }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
-                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -175,7 +163,6 @@ public class UserInterface {
             System.out.println("2. Provolone");
             System.out.println("3. Cheddar");
             System.out.println("4. Swiss");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Select your Cheese: ");
 
@@ -191,10 +178,6 @@ public class UserInterface {
                 }
                 case 4 -> {
                     return CheeseType.SWISS;
-                }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
                 }
                 default -> System.out.println("Invalid Choice");
             }
@@ -213,7 +196,6 @@ public class UserInterface {
             System.out.println("7. Pickles");
             System.out.println("8. Guacamole");
             System.out.println("9. Mushrooms");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Select your toppings: ");
 
@@ -245,10 +227,6 @@ public class UserInterface {
                 case 9 -> {
                     return RegularToppingType.MUSHROOMS;
                 }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
-                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -263,7 +241,6 @@ public class UserInterface {
             System.out.println("4. Ranch");
             System.out.println("5. Thousand Islands");
             System.out.println("6. Vinaigrette");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Select your sauce: ");
 
@@ -286,10 +263,6 @@ public class UserInterface {
                 case 6 -> {
                     return SauceType.VINAIGRETTE;
                 }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
-                }
                 default -> System.out.println("Invalid Choice");
             }
         }
@@ -300,7 +273,6 @@ public class UserInterface {
             System.out.println("\n=== Side Selection ===");
             System.out.println("1. Au Jus");
             System.out.println("2. Sauce");
-            System.out.println("0. Go Back");
 
             int choice = readInt("Select your side: ");
 
@@ -310,10 +282,6 @@ public class UserInterface {
                 }
                 case 2 -> {
                     return SideType.SAUCE;
-                }
-                case 0 -> {
-                    System.out.println("Going back to Sandwich Maker");
-                    return null;
                 }
                 default -> System.out.println("Invalid Choice");
             }
@@ -361,7 +329,7 @@ public class UserInterface {
         }
     }
 
-    private void displayOrder() {
+    private void displayOrder(Order order) {
 
     }
 }

@@ -1,11 +1,12 @@
 package com.pluralsight.models.toppings;
 
 import com.pluralsight.enums.SandwichSize;
+import com.pluralsight.enums.SideType;
 
 public class Side extends Topping{
 
-    public Side(String name) {
-        super(name);
+    public Side(SideType name) {
+        super(name.toString());
     }
 
     @Override
