@@ -75,8 +75,7 @@ public class UserInterface {
                     if (order.getItems().isEmpty()){
                         System.out.println("\nYou must add atleast one item before checking out");
                     } else {
-                        displayCheckoutScreen();
-                        running = false;
+                        running = displayCheckoutScreen();
                     }
                 }
                 case 0 -> {
@@ -492,30 +491,36 @@ public class UserInterface {
         }
     }
 
-    private void displayCheckoutScreen() {
-        System.out.println("\n=== Checkout ===");
-        System.out.println("Order Summary:");
-        System.out.println("----------------------------");
+    private boolean displayCheckoutScreen() {
+        while (true) {
+            System.out.println("\n=== Checkout ===");
+            System.out.println("Order Summary:");
+            System.out.println("----------------------------");
 
-        order.getItems().stream()
-                .forEach(item -> System.out.println(item));
+            order.getItems().stream()
+                    .forEach(item -> System.out.println(item));
 
-        System.out.println("----------------------------");
-        System.out.printf("Total: $%.2f%n", order.getTotalPrice());
-        System.out.println("----------------------------");
+            System.out.println("----------------------------");
+            System.out.printf("Total: $%.2f%n", order.getTotalPrice());
+            System.out.println("----------------------------");
 
-        System.out.println("\n1. Confirm Order");
-        System.out.println("0. Cancel Order");
+            System.out.println("\n1. Confirm Order");
+            System.out.println("0. Cancel Order");
 
-        int choice = readInt("Enter your choice: ");
+            int choice = readInt("Enter your choice: ");
 
-        switch (choice) {
-            case 1 -> {
-                FileManager.saveReceipt(order);
-                System.out.println("Order confirmed! Receipt saved.");
+            switch (choice) {
+                case 1 -> {
+                    FileManager.saveReceipt(order);
+                    System.out.println("Order confirmed! Receipt saved.");
+                    return false;
+                }
+                case 0 -> {
+                    System.out.println("Order cancelled.");
+                    return true;
+                }
+                default -> System.out.println("Invalid choice.");
             }
-            case 0 -> System.out.println("Order cancelled.");
-            default -> System.out.println("Invalid choice.");
         }
     }
 
