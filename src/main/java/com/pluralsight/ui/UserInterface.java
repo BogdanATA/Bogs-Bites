@@ -22,7 +22,7 @@ public class UserInterface {
     public void displayHomeScreen() {
         boolean running = true;
         while (running) {
-            System.out.println("=== Welcome to Bog's Bites ===");
+            System.out.println("\n=== Welcome to Bog's Bites ===");
             System.out.println("1. New Order");
             System.out.println("0. Exit");
 
@@ -45,6 +45,7 @@ public class UserInterface {
     private void displayOrderScreen() {
         boolean running = true;
         while (running) {
+            System.out.println("\n=== Your Current Order ===");
             System.out.println(order);
             System.out.println("\n=== Order ===");
             System.out.println("1. Add Sandwich");
@@ -70,7 +71,14 @@ public class UserInterface {
                         order.addItem(chips);
                     }
                 }
-                case 4 -> displayCheckoutScreen();
+                case 4 -> {
+                    if (order.getItems().isEmpty()){
+                        System.out.println("\nYou must add atleast one item before checking out");
+                    } else {
+                        displayCheckoutScreen();
+                        running = false;
+                    }
+                }
                 case 0 -> {
                     System.out.println("Order Cancelled");
                     running = false;
