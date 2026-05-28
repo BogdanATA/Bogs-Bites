@@ -1,10 +1,7 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.enums.*;
-import com.pluralsight.models.Chips;
-import com.pluralsight.models.Drink;
-import com.pluralsight.models.Order;
-import com.pluralsight.models.Sandwich;
+import com.pluralsight.models.*;
 import com.pluralsight.models.toppings.*;
 import com.pluralsight.services.FileManager;
 
@@ -62,8 +59,9 @@ public class UserInterface {
             System.out.println("1. Add Sandwich");
             System.out.println("2. Add Drink");
             System.out.println("3. Add Chips");
-            System.out.println("4. Checkout");
-            System.out.println("5. Remove Item");
+            System.out.println("4. Add Signature Sandwich");
+            System.out.println("5. Checkout");
+            System.out.println("6. Remove Item");
             System.out.println("0. Cancel Order");
 
             int choice = readInt("Enter your choice: ");
@@ -85,14 +83,15 @@ public class UserInterface {
                         order.addItem(chips);
                     }
                 }
-                case 4 -> {
+                case 4 -> order.addItem(new SignatureSandwich());
+                case 5 -> {
                     if (order.getItems().isEmpty()){
                         System.out.println(YELLOW + "\nYou must add atleast one item before checking out" + RESET);
                     } else {
                         running = displayCheckoutScreen();
                     }
                 }
-                case 5 -> removeItemFromOrder();
+                case 6 -> removeItemFromOrder();
                 case 0 -> {
                     System.out.println("Order Cancelled");
                     running = false;
@@ -163,13 +162,13 @@ public class UserInterface {
         }
         //Side
         int sideCount = 0;
-        while (sideCount < 2) {
+        while (sideCount < 1) {
             SideType sideType = selectSide();
             if (sideType == null) break;
             sandwich.addTopping(new Side(sideType));
             sideCount++;
-            if(sideCount == 2) {
-                System.out.println(YELLOW + "\nMax of 2 Sides reached!" + RESET);
+            if(sideCount == 1) {
+                System.out.println(YELLOW + "\nMax of 1 Sides reached!" + RESET);
             }
         }
         toastSandwich(sandwich);
@@ -363,7 +362,7 @@ public class UserInterface {
     private SideType selectSide() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Side Selection ===" + RESET);
-            System.out.println(YELLOW + "Maximum of 2 Sides" + RESET);
+            System.out.println(YELLOW + "Maximum of 1 Sides" + RESET);
             System.out.println("1. Au Jus");
             System.out.println("2. Sauce");
             System.out.println("0. Done");
@@ -544,9 +543,13 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Displays items in the current order and allows the user to remove an item by number
+     */
     private void removeItemFromOrder() {
         if (order.getItems().isEmpty()) {
             System.out.println("\nNo items in order");
+            return;
         }
 
         System.out.println("\n=== Remove Item ===");
