@@ -23,6 +23,9 @@ public class UserInterface {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Displays the home screen and handles navigation to a new order or exit
+     */
     public void displayHomeScreen() {
         boolean running = true;
         while (running) {
@@ -46,6 +49,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Displays the order screen and handles adding items, checkout, and cancellation
+     */
     private void displayOrderScreen() {
         boolean running = true;
         while (running) {
@@ -97,6 +103,12 @@ public class UserInterface {
     /*---------------------------------------------------------------
      *                       SANDWICH
      * --------------------------------------------------------------*/
+
+    /**
+     * Guides the user through building a sandwich and returns the completed sandwich
+     *
+     * @return The fully completed Sandwich
+     */
     private Sandwich processAddSandwich() {
         BreadType breadType = selectBreadType();
 
@@ -163,6 +175,11 @@ public class UserInterface {
         return sandwich;
     }
 
+    /**
+     * Prompts the user to select a bread type and returns their choice
+     *
+     * @return The selected BreadType
+     */
     private BreadType selectBreadType() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Bread Type ===" + RESET);
@@ -183,6 +200,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a sandwich size and returns their choice
+     *
+     * @return The selected SandwichSize
+     */
     private SandwichSize selectSandwichSize() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Sandwich Size ===" + RESET);
@@ -201,6 +223,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a meat topping and returns their choice
+     *
+     * @return The selected MeatType, or null if the user is done adding meat
+     */
     private MeatType selectMeat() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Meat Selection ===" + RESET);
@@ -228,6 +255,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a cheese topping and returns their choice
+     *
+     * @return The selected CheeseType, or null if the user is done adding cheese
+     */
     private CheeseType selectCheese() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Cheese Selection ===" + RESET);
@@ -251,6 +283,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a regular topping and returns their choice
+     *
+     * @return The selected RegularToppingType, or null if the user is done adding toppings
+     */
     private RegularToppingType selectRegularToppings() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Topping Selection ===" + RESET);
@@ -284,6 +321,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a sauce and returns their choice
+     *
+     * @return The selected SauceType, or null if the user is done adding sauce
+     */
     private SauceType selectSauce() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Sauce Selection ===" + RESET);
@@ -311,6 +353,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a side and returns their choice
+     *
+     * @return The selected SideType, or null if the user is done adding sides
+     */
     private SideType selectSide() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Side Selection ===" + RESET);
@@ -330,6 +377,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to choose whether to toast their sandwich
+     *
+     * @param sandwich The sandwich to toast
+     */
     private void toastSandwich(Sandwich sandwich) {
         while (true) {
             System.out.println("\n" + CYAN + "=== Toast Sandwich ===" + RESET);
@@ -349,6 +401,12 @@ public class UserInterface {
     /*---------------------------------------------------------------
      *                       DRINK
      * --------------------------------------------------------------*/
+
+    /**
+     * Guides the user through selecting a drink and returns the completed drink
+     *
+     * @return The fully configured Drink, or null if the user went back
+     */
     private Drink processAddDrink() {
         DrinkFlavor drinkFlavor = selectDrinkFlavor();
         if (drinkFlavor == null) {
@@ -358,6 +416,11 @@ public class UserInterface {
         return new Drink(drinkFlavor, drinkSize);
     }
 
+    /**
+     * Prompts the user to select a drink flavor and returns their choice
+     *
+     * @return The selected DrinkFlavor, or null if the user went back
+     */
     private DrinkFlavor selectDrinkFlavor() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Drink Flavor Selection ===" + RESET);
@@ -378,6 +441,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prompts the user to select a drink size and returns their choice
+     *
+     * @return The selected DrinkSize
+     */
     private DrinkSize selectDrinkSize() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Drink Size Selection ===" + RESET);
@@ -399,12 +467,23 @@ public class UserInterface {
     /*---------------------------------------------------------------
      *                       CHIPS
      * --------------------------------------------------------------*/
+
+    /**
+     * Guides the user through selecting chips and returns the completed chips
+     *
+     * @return The fully configured Chips, or null if the user went back
+     */
     private Chips processAddChips() {
         ChipType chipsType = selectChips();
         if (chipsType == null) return null;
         return new Chips(chipsType);
     }
 
+    /**
+     * Prompts the user to select a chip type and returns their choice
+     *
+     * @return The selected ChipType, or null if the user went back
+     */
     private ChipType selectChips() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Chips Selection ===" + RESET);
@@ -425,6 +504,11 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Displays the checkout screen and returns whether the order loop should keep running
+     *
+     * @return True if the user cancelled and should return to the order screen, false if confirmed
+     */
     private boolean displayCheckoutScreen() {
         while (true) {
             System.out.println("\n" + CYAN + "=== Checkout ===" + RESET);
@@ -462,11 +546,24 @@ public class UserInterface {
     /*---------------------------------------------------------------
      *                       Helper Methods
      * --------------------------------------------------------------*/
+
+    /**
+     * Prints a prompt and reads a line of text from the user
+     *
+     * @param prompt The message to display before reading input
+     * @return The trimmed string entered by the user
+     */
     private String readString(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Prints a prompt and reads a valid integer from the user, re-prompting on invalid input
+     *
+     * @param prompt The message to display before reading input
+     * @return The integer entered by the user
+     */
     private int readInt(String prompt) {
         while (true) {
             try {
