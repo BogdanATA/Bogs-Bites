@@ -45,7 +45,7 @@ public class Sandwich implements IPriceable{
      * Adds a topping to the sandwich, and sets isExtra to true if it already exists
      *
      * @param topping the Topping to add
-     */
+     * */
     public void addTopping(Topping topping) {
         if (topping instanceof PremiumTopping) {
             PremiumTopping premiumTopping = (PremiumTopping) topping;
@@ -57,23 +57,21 @@ public class Sandwich implements IPriceable{
         }
         toppings.add(topping);
     }
-
     /**
      * Returns a simple display name of this sandwich to print out under current order
      *
      * @return the name as a String
-     */
+     * */
     @Override
     public String getName() {
         return sandwhichSize.getInches() + "\" " + breadType + " Sandwich"
                 + (isToasted ? " [Toasted]" : "");
     }
-
     /**
-     * Calculates total price of the sandwich
+     * Calculates total price of sandwich
      *
      * @return the total price as a double
-     */
+     * */
     @Override
     public double getPrice() {
         double breadPrice = 0;
