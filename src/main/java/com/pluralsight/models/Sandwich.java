@@ -49,7 +49,7 @@ public class Sandwich implements IPriceable{
     public void addTopping(Topping topping) {
         if (topping instanceof PremiumTopping) {
             PremiumTopping premiumTopping = (PremiumTopping) topping;
-            boolean alreadyExists = toppings.stream()
+            boolean alreadyExists = toppings.stream() // if item match is found set alreadyExists to true
                     .anyMatch(t -> t.getName().equals(topping.getName()));
             if (alreadyExists) {
                 premiumTopping.setExtra(true);
@@ -97,9 +97,9 @@ public class Sandwich implements IPriceable{
         sb.append("\n  Toppings:");
         for (Topping t : toppings) {
             sb.append("\n    - ").append(t.getName());
-            if (t instanceof PremiumTopping) {
+            if (t instanceof PremiumTopping) { // if a topping is a premium topping
                 PremiumTopping premiumTopping = (PremiumTopping) t;
-                if (premiumTopping.isExtra()) {
+                if (premiumTopping.isExtra()) { // if topping is extra
                     sb.append(" (extra)");
                 }
             }

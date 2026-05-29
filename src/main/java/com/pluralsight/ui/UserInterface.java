@@ -85,7 +85,7 @@ public class UserInterface {
                 }
                 case 4 -> order.addItem(new SignatureSandwich());
                 case 5 -> {
-                    if (order.getItems().isEmpty()){
+                    if (order.getItems().isEmpty()){ // if order is empty customer cant even go to the checkout screen
                         System.out.println(YELLOW + "\nYou must add atleast one item before checking out" + RESET);
                     } else {
                         running = displayCheckoutScreen();
@@ -118,7 +118,7 @@ public class UserInterface {
         Sandwich sandwich = new Sandwich(breadType, sandwichSize);
         //Meat
         int meatCount = 0;
-        while (meatCount < 2) {
+        while (meatCount < 2) { // if 2 meats already added cant add more
             MeatType meatType = selectMeat();
             if (meatType == null) break;
             sandwich.addTopping(new Meat(meatType));
@@ -129,7 +129,7 @@ public class UserInterface {
         }
         //Cheese
         int cheeseCount= 0;
-        while (cheeseCount < 2) {
+        while (cheeseCount < 2) { // if 2 cheeses already added cant add more
             CheeseType cheeseType = selectCheese();
             if (cheeseType == null) break;
             sandwich.addTopping(new Cheese(cheeseType));
@@ -140,7 +140,7 @@ public class UserInterface {
         }
         //Toppings
         int toppingCount = 0;
-        while (toppingCount < 6) {
+        while (toppingCount < 6) { // if 6 toppings already added cant add more
             RegularToppingType toppingType = selectRegularToppings();
             if (toppingType == null) break;
             sandwich.addTopping(new RegularTopping(toppingType));
@@ -151,7 +151,7 @@ public class UserInterface {
         }
         //Sauce
         int sauceCount = 0;
-        while (sauceCount < 3) {
+        while (sauceCount < 3) { // if 3 sauces already added cant add more
             SauceType sauceType = selectSauce();
             if (sauceType == null) break;
             sandwich.addTopping(new Sauce(sauceType));
@@ -162,7 +162,7 @@ public class UserInterface {
         }
         //Side
         int sideCount = 0;
-        while (sideCount < 1) {
+        while (sideCount < 1) { // if 1 side already added cant add more
             SideType sideType = selectSide();
             if (sideType == null) break;
             sandwich.addTopping(new Side(sideType));
@@ -554,18 +554,18 @@ public class UserInterface {
 
         System.out.println("\n=== Remove Item ===");
         for (int i = 0; i < order.getItems().size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + order.getItems().get(i).getName());
+            System.out.println("[" + (i + 1) + "]" + order.getItems().get(i).getName()); // prints index number(+1) next to item with the same index
         }
         System.out.println("\nEnter item number to remove or 0 to cancel");
         int choice = readInt("Enter item number to remove: ");
 
         if (choice == 0) return;
 
-        if (choice < 1 || choice > order.getItems().size()) {
+        if (choice < 1 || choice > order.getItems().size()) { // if choice is not valid
             System.out.println("Invalid choice");
         } else {
             System.out.println("Item Removed");
-            order.getItems().remove(choice -1);
+            order.getItems().remove(choice -1); // remove item if choice is valid
         }
     }
 
