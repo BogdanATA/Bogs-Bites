@@ -15,10 +15,4 @@ public abstract class Topping {
 
     public abstract double getPrice(SandwichSize sandwichSize);
 
-    @Override
-    public String toString() {
-        return "Topping{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }
